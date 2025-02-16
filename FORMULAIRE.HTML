@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babi Cup Talent - Accueil</title>
+    <link rel="icon" href="/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            background-color: rgb(249, 250, 251);
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+
+        .carousel {
+            position: relative;
+            height: 16rem;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            transition: opacity 1s;
+            opacity: 0;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .placeholder {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            padding: 2rem;
+        }
+
+        .title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: rgb(31, 41, 55);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            position: relative; /* Permet de positionner la boîte par rapport à ce conteneur */
+            overflow: hidden; /
+        }
+
+        .label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgb(55, 65, 81);
+            margin-bottom: 0.25rem;
+        }
+
+        .input, .select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1.5px solid rgb(229, 231, 235);
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            color: rgb(55, 65, 81);
+            background-color: white;
+        }
+
+     /* Style pour la boîte de la liste déroulante */
+.select {
+    appearance: none; /* Supprime le style par défaut */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+    cursor: pointer;
+    border: 1.5px solid rgb(229, 231, 235);
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    color: rgb(55, 65, 81);
+    background-color: white;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.select:hover {
+    border-color: rgb(156, 163, 175);
+}
+
+.select:focus {
+    outline: none;
+    border-color: rgb(56, 182, 255);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Style pour les options de la liste déroulante */
+.select option {
+    padding: 0.75rem 1rem;
+    background-color: white;
+    color: rgb(55, 65, 81);
+    transition: background-color 0.2s ease;
+}
+
+.select option:hover {
+    background-color: rgb(56, 182, 255);
+    color: white;
+}
+
+/* Style pour la boîte déroulante (nécessite un peu de JavaScript pour le personnaliser) */
+.select-dropdown {
+    border: 1.5px solid rgb(229, 231, 235);
+    border-radius: 0.75rem;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.select-dropdown option {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+}
+
+.select-dropdown option:hover {
+    background-color: rgb(56, 182, 255);
+    color: white;
+}
+     
+
+      
+
+        .button {
+            width: 100%;
+            background-color: rgb(56, 182, 255);
+            color: white;
+            padding: 0.875rem;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .button:hover {
+            background-color: rgb(56, 182, 255);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+
+        .button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .toast {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .toast.success {
+            background-color: rgb(34, 197, 94);
+        }
+
+        .toast.error {
+            background-color: rgb(239, 68, 68);
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0.5rem);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="carousel" id="carousel">
+            <div class="carousel-slide active">
+                <img src="images/1.png" alt="Image 1">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/2.png" alt="Image 2">
+            </div>
+            <div class="carousel-slide">
+                <img src="images/3.png" alt="Image 3">
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h1 class="title"></h1>
+
+            <form id="bloomForm" class="form">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="label">Prénom</label>
+                        <input type="text" name="firstName" required class="input" placeholder="Votre prénom">
+                    </div>
+                    <div class="form-group">
+                        <label class="label">Nom</label>
+                        <input type="text" name="lastName" required class="input" placeholder="Votre nom">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">Date de naissance</label>
+                    <input type="date" name="dob" required class="input">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">Genre</label>
+                    <select name="gender" class="select">
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label">Quartier</label>
+                    <input type="text" name="neighborhood" required class="input" placeholder="Votre quartier">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">Numéro de téléphone</label>
+                    <input type="tel" name="phone" required class="input" placeholder="Votre numéro">
+                </div>
+
+                <div class="form-group">
+                    <label class="label">Département</label>
+                    <select name="department" class="select">
+                        <option value="Bloom Trapchurch">Bloom Trapchurch</option>
+                        <option value="Bloom Com">Bloom Com</option>
+                        <option value="Bloom Praise">Bloom Praise</option>
+                        <option value="Bloom Ushers">Bloom Ushers</option>
+                        <option value="Bloom ADN">Bloom ADN</option>
+                        <option value="Bloom Portiers">Bloom Portiers</option>
+                        <option value="Bloom Music">Bloom Music</option>
+                        <option value="Bloom Dirigeants">Bloom Dirigeants</option>
+                        <option value="Bloom Mres">Bloom Mres</option>
+                        <option value="Bloom Design">Bloom Design</option>
+                        <option value="Bloom INTER">Bloom INTER</option>
+                        <option value="Bloom Atelier Créatif">Bloom Atelier Créatif</option>
+                        <option value="Bloom Atelier Cinéma">Bloom Atelier Cinéma</option>
+                        <option value="Bloom Gestion de Culte">Bloom Gestion de Culte</option>
+                        <option value="Bloom Dancers">Bloom Dancers</option>
+                        <option value="Bloom Baptême">Bloom Baptême</option>
+                        <option value="Bloom Protocole">Bloom Protocole</option>
+                        <option value="Bloom Évangélisation">Bloom Évangélisation</option>
+                        <option value="Bloom Sono">Bloom Sono</option>
+                        <option value="Bloom Intercession">Bloom Intercession</option>
+                        <option value="Bloom Département Aucun">Bloom Département Aucun</option>
+                        <option value="Bloom Sainte Cène">Bloom Sainte Cène</option>
+                        <option value="Bloom Studio">Bloom Studio</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="button">Soumettre</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        function setupCarousel() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            let currentSlide = 0;
+
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 3000);
+        }
+
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            toast.classList.add('visible');
+
+            setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 3000);
+        }
+
+        function calculateAge(birthDate) {
+            const today = new Date();
+            const birth = new Date(birthDate);
+            let age = today.getFullYear() - birth.getFullYear();
+            const monthDiff = today.getMonth() - birth.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            return age;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const selectElements = document.querySelectorAll('.select');
+
+    selectElements.forEach((select) => {
+        const dropdown = document.createElement('div');
+        dropdown.className = 'select-dropdown';
+        dropdown.style.display = 'none'; // Masquer par défaut
+
+        // Créer les options
+        Array.from(select.options).forEach((option) => {
+            const optionElement = document.createElement('div');
+            optionElement.className = 'select-option';
+            optionElement.textContent = option.textContent;
+            optionElement.addEventListener('click', () => {
+                select.value = option.value;
+                dropdown.style.display = 'none';
+                select.dispatchEvent(new Event('change')); // Déclencher l'événement change
+            });
+            dropdown.appendChild(optionElement);
+        });
+
+        // Afficher/masquer la boîte déroulante
+        select.addEventListener('click', () => {
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Ajouter la boîte déroulante au DOM
+        select.parentNode.appendChild(dropdown);
+    });
+
+    // Masquer la boîte déroulante en cliquant à l'extérieur
+    document.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('select')) {
+            document.querySelectorAll('.select-dropdown').forEach((dropdown) => {
+                dropdown.style.display = 'none';
+            });
+        }
+    });
+});
+
+        document.getElementById('bloomForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            const age = calculateAge(data.dob);
+            const message = age >= 18 ? 'BLOOM CHURCH' : 'BLOOM LIGHT';
+
+            try {
+                const response = await fetch('http://localhost:3000/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        apiKey: 'botbloom',
+                        ...data,
+                        age: `${age} ans`,
+                        message,
+                    }),
+                });
+
+                if (response.ok) {
+            showToast('Formulaire envoyé avec succès!', 'success');
+            // Recharger la page après 3 secondes
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        } else  {
+                    showToast('Erreur lors de l\'envoi du formulaire', 'error');
+                }
+            } catch (error) {
+                showToast('Erreur de connexion au serveur', 'error');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', setupCarousel);
+    </script>
+</body>
+</html>
