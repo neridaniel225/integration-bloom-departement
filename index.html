@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Babi Cup Talent - Accueil</title>
     <link rel="icon" href="/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    
     <style>
         * {
             box-sizing: border-box;
@@ -48,13 +46,6 @@
             opacity: 1;
         }
 
-        .placeholder {
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         .form-container {
             background-color: white;
             border-radius: 1.5rem;
@@ -86,8 +77,6 @@
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
-            position: relative; /* Permet de positionner la boîte par rapport à ce conteneur */
-            overflow: hidden; /
         }
 
         .label {
@@ -108,73 +97,29 @@
             background-color: white;
         }
 
-     /* Style pour la boîte de la liste déroulante */
-.select {
-    appearance: none; /* Supprime le style par défaut */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em;
-    padding-right: 2.5rem;
-    cursor: pointer;
-    border: 1.5px solid rgb(229, 231, 235);
-    border-radius: 0.75rem;
-    font-size: 0.95rem;
-    color: rgb(55, 65, 81);
-    background-color: white;
-    transition: all 0.2s ease;
-    width: 100%;
-}
+        .select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
 
-.select:hover {
-    border-color: rgb(156, 163, 175);
-}
+        .select:hover {
+            border-color: rgb(156, 163, 175);
+        }
 
-.select:focus {
-    outline: none;
-    border-color: rgb(56, 182, 255);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-/* Style pour les options de la liste déroulante */
-.select option {
-    padding: 0.75rem 1rem;
-    background-color: white;
-    color: rgb(55, 65, 81);
-    transition: background-color 0.2s ease;
-}
-
-.select option:hover {
-    background-color: rgb(56, 182, 255);
-    color: white;
-}
-
-/* Style pour la boîte déroulante (nécessite un peu de JavaScript pour le personnaliser) */
-.select-dropdown {
-    border: 1.5px solid rgb(229, 231, 235);
-    border-radius: 0.75rem;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-top: 0.5rem;
-}
-
-.select-dropdown option {
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-}
-
-.select-dropdown option:hover {
-    background-color: rgb(56, 182, 255);
-    color: white;
-}
-     
-
-      
+        .select:focus {
+            outline: none;
+            border-color: rgb(59, 130, 246);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
 
         .button {
             width: 100%;
-            background-color: rgb(56, 182, 255);
+            background-color: rgb(59, 130, 246);
             color: white;
             padding: 0.875rem;
             border-radius: 0.75rem;
@@ -187,7 +132,7 @@
         }
 
         .button:hover {
-            background-color: rgb(56, 182, 255);
+            background-color: rgb(29, 78, 216);
             transform: translateY(-1px);
             box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
         }
@@ -222,7 +167,6 @@
             opacity: 1;
             transform: translateX(-50%) translateY(0.5rem);
         }
-        
     </style>
 </head>
 <body>
@@ -240,8 +184,7 @@
         </div>
 
         <div class="form-container">
-            <h1 class="title"></h1>
-
+            <h1 class="title">Formulaire d'intégration</h1>
             <form id="bloomForm" class="form">
                 <div class="grid-2">
                     <div class="form-group">
@@ -348,46 +291,6 @@
             return age;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-    const selectElements = document.querySelectorAll('.select');
-
-    selectElements.forEach((select) => {
-        const dropdown = document.createElement('div');
-        dropdown.className = 'select-dropdown';
-        dropdown.style.display = 'none'; // Masquer par défaut
-
-        // Créer les options
-        Array.from(select.options).forEach((option) => {
-            const optionElement = document.createElement('div');
-            optionElement.className = 'select-option';
-            optionElement.textContent = option.textContent;
-            optionElement.addEventListener('click', () => {
-                select.value = option.value;
-                dropdown.style.display = 'none';
-                select.dispatchEvent(new Event('change')); // Déclencher l'événement change
-            });
-            dropdown.appendChild(optionElement);
-        });
-
-        // Afficher/masquer la boîte déroulante
-        select.addEventListener('click', () => {
-            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-        });
-
-        // Ajouter la boîte déroulante au DOM
-        select.parentNode.appendChild(dropdown);
-    });
-
-    // Masquer la boîte déroulante en cliquant à l'extérieur
-    document.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('select')) {
-            document.querySelectorAll('.select-dropdown').forEach((dropdown) => {
-                dropdown.style.display = 'none';
-            });
-        }
-    });
-});
-
         document.getElementById('bloomForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -396,7 +299,7 @@
             const message = age >= 18 ? 'BLOOM CHURCH' : 'BLOOM LIGHT';
 
             try {
-                const response = await fetch('http://localhost:3000/send-message', {
+                const response = await fetch('https://backend-bot-qqzf.onrender.com/send-message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -410,12 +313,11 @@
                 });
 
                 if (response.ok) {
-            showToast('Formulaire envoyé avec succès!', 'success');
-            // Recharger la page après 3 secondes
-            setTimeout(() => {
-                window.location.reload();
-            }, 3000);
-        } else  {
+                    showToast('Formulaire envoyé avec succès!', 'success');
+                    setTimeout(() => {
+                        window.location.reload(); // Recharger la page après 3 secondes
+                    }, 3000);
+                } else {
                     showToast('Erreur lors de l\'envoi du formulaire', 'error');
                 }
             } catch (error) {
