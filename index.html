@@ -28,26 +28,25 @@
             margin: 0 auto;
         }
 
-        .carousel {
-            position: relative;
-            height: 16rem;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
+       .carousel {
+    position: relative;
+    height: 16rem;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
 
-        .carousel-slide {
-            position: absolute;
-            inset: 0;
-            transition: opacity 1s;
-            opacity: 0;
-        }
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    transition: opacity 1s;
+    opacity: 0;
+}
 
-        .carousel-slide.active {
-            opacity: 1;
-        }
-
+.carousel-slide.active {
+    opacity: 1;
+}
         .placeholder {
             background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
             width: 100%;
@@ -360,16 +359,20 @@
     <div id="toast" class="toast"></div>
 
     <script>
-        function setupCarousel() {
-            const slides = document.querySelectorAll('.carousel-slide');
-            let currentSlide = 0;
+     function setupCarousel() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    console.log('Nombre de diapositives :', slides.length); // Debug
+    let currentSlide = 0;
 
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 3000);
-        }
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+        console.log('Diapositive active :', currentSlide); // Debug
+    }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', setupCarousel);
 
         function showToast(message, type) {
             const toast = document.getElementById('toast');
